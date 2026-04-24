@@ -1,0 +1,121 @@
+{
+  "name": "vscode-grass",
+  "displayName": "vscode-grass",
+  "description": "A virtual lawn in your VS Code sidebar. Touch grass without leaving your IDE.",
+  "version": "0.0.2",
+  "publisher": "Ilan-Z",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": ["Other"],
+  "activationEvents": ["onStartupFinished"],
+  "main": "./dist/extension.js",
+  "icon": "media/icons/icon.png",
+  "contributes": {
+    "views": {
+      "explorer": [
+        {
+          "icon": "media/icons/icon.png",
+          "type": "webview",
+          "id": "vscodeGrass.grassView",
+          "name": "vs code grass"
+        }
+      ]
+    },
+    "commands": [
+      {
+        "command": "vscode-grass.water",
+        "title": "Water the grass",
+        "category": "Grass",
+        "icon": {
+          "light": "./media/icons/water.svg",
+          "dark": "./media/icons/water.svg"
+        }
+      },
+      {
+        "command": "vscode-grass.mow",
+        "title": "Mow the lawn",
+        "category": "Grass",
+        "icon": {
+          "light": "./media/icons/mow.svg",
+          "dark": "./media/icons/mow.svg"
+        }
+      },
+      {
+        "command": "vscode-grass.toggleAnalytics",
+        "title": "Toggle analytics",
+        "category": "Grass",
+        "icon": {
+          "light": "./media/icons/analytics.svg",
+          "dark": "./media/icons/analytics.svg"
+        }
+      },
+      {
+        "command": "vscode-grass.reset",
+        "title": "Reset lawn state",
+        "category": "Grass",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "vscode-grass.resetTouchCount",
+        "title": "Reset touch count",
+        "category": "Grass"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "vscode-grass.toggleAnalytics",
+          "when": "view == vscodeGrass.grassView",
+          "group": "navigation@1"
+        },
+        {
+          "command": "vscode-grass.mow",
+          "when": "view == vscodeGrass.grassView",
+          "group": "navigation@2"
+        },
+        {
+          "command": "vscode-grass.water",
+          "when": "view == vscodeGrass.grassView",
+          "group": "navigation@3"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "vs code grass",
+      "properties": {
+        "vscodeGrass.enableNotifications": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable passive notifications about lawn state"
+        },
+        "vscodeGrass.growthSpeed": {
+          "type": "string",
+          "enum": ["slow", "normal", "fast"],
+          "default": "normal",
+          "description": "How fast your grass grows"
+        },
+        "vscodeGrass.messageLanguage": {
+          "type": "string",
+          "enum": ["en", "fr", "es", "de", "pl", "it", "pirate"],
+          "enumDescriptions": ["English", "Francais", "Espanol", "Deutsch", "Polski", "Italiano", "Pirate"],
+          "default": "en",
+          "description": "Language for touch messages"
+        }
+      }
+    }
+  },
+  "scripts": {
+    "compile": "webpack --mode development",
+    "watch": "webpack --watch --mode development",
+    "package": "webpack --mode production"
+  },
+  "devDependencies": {
+    "@types/node": "^18.0.0",
+    "@types/vscode": "^1.80.0",
+    "ts-loader": "^9.5.0",
+    "typescript": "^5.0.0",
+    "webpack": "^5.88.0",
+    "webpack-cli": "^5.1.0"
+  }
+}

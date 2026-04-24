@@ -375,7 +375,7 @@ export function getFirstTouchMessage(lang: string): string {
 }
 
 export interface UiStrings {
-  stillRefilling: string;
+  stillRefilling: string;        // {display}
   touchCountReset: string;
   resetConfirmMsg: string;
   resetConfirmBtn: string;
@@ -385,17 +385,17 @@ export interface UiStrings {
   mowBtn: string;
   stageNames: Record<string, string>;
   stageNext: Record<string, string>;
-  nextStageIn: (stage: string, time: string) => string;
+  nextStageIn: string;           // {stage} {time}
   jungleMsg: string;
   deadMsg: string;
-  dryPct: (pct: number, time: string) => string;
-  wateringCooldown: (display: string) => string;
+  dryPct: string;                // {pct} {time}
+  wateringCooldown: string;      // {display}
   ariaLabel: string;
   fmtNow: string;
-  fmtSeconds: (s: number) => string;
-  fmtMinutes: (m: number, s: number) => string;
-  fmtHours: (h: number, m: number) => string;
-  fmtDays: (d: number, h: number) => string;
+  fmtSeconds: string;            // {s}
+  fmtMinutes: string;            // {m} {ss}
+  fmtHours: string;              // {h} {mm}
+  fmtDays: string;               // {d} {hh}
   seasonNames: Record<string, string>;
 }
 
@@ -411,17 +411,17 @@ const UI: Record<Lang, UiStrings> = {
     mowBtn: 'Mow',
     stageNames: { dead: 'DEAD', sprout: 'Sprout', short: 'Short', normal: 'Normal', tall: 'Tall', jungle: 'Jungle' },
     stageNext: { sprout: 'Short', short: 'Normal', normal: 'Tall', tall: 'Jungle' },
-    nextStageIn: (stage, time) => `${stage} in ${time}`,
+    nextStageIn: '{stage} in {time}',
     jungleMsg: 'Insects might visit, or just mow it.',
     deadMsg: 'Pleaaase give this lawn some water',
-    dryPct: (pct, time) => `♨️ ${pct}% dry ${time}`,
-    wateringCooldown: (display) => `Watering: ${display}`,
+    dryPct: '♨️ {pct}% dry {time}',
+    wateringCooldown: 'Watering: {display}',
     ariaLabel: 'Virtual lawn, click to touch grass',
     fmtNow: 'now',
-    fmtSeconds: (s) => `${s}s`,
-    fmtMinutes: (m, s) => `${m}m ${s}s`,
-    fmtHours: (h, m) => `${h}h ${m}m`,
-    fmtDays: (d, h) => `${d}d ${h}h`,
+    fmtSeconds: '{s}s',
+    fmtMinutes: '{m}m {ss}s',
+    fmtHours: '{h}h {mm}m',
+    fmtDays: '{d}d {hh}h',
     seasonNames: { spring: 'Spring', summer: 'Summer', autumn: 'Autumn', winter: 'Winter' },
   },
   fr: {
@@ -435,17 +435,17 @@ const UI: Record<Lang, UiStrings> = {
     mowBtn: 'Tondre',
     stageNames: { dead: 'MORTE', sprout: 'Pousse', short: 'Courte', normal: 'Normale', tall: 'Haute', jungle: 'Jungle' },
     stageNext: { sprout: 'Courte', short: 'Normale', normal: 'Haute', tall: 'Jungle' },
-    nextStageIn: (stage, time) => `${stage} dans ${time}`,
+    nextStageIn: '{stage} dans {time}',
     jungleMsg: 'Des insectes pourraient venir, ou tondez-la.',
     deadMsg: 'Votre pelouse a désespérément besoin d\'eau',
-    dryPct: (pct, time) => `♨️ ${pct}% sèche ${time}`,
-    wateringCooldown: (display) => `Arrosage : ${display}`,
+    dryPct: '♨️ {pct}% sèche {time}',
+    wateringCooldown: 'Arrosage : {display}',
     ariaLabel: 'Pelouse virtuelle, cliquez pour toucher l\'herbe',
     fmtNow: 'maintenant',
-    fmtSeconds: (s) => `${s}s`,
-    fmtMinutes: (m, s) => `${m}m ${s}s`,
-    fmtHours: (h, m) => `${h}h ${m}m`,
-    fmtDays: (d, h) => `${d}j ${h}h`,
+    fmtSeconds: '{s}s',
+    fmtMinutes: '{m}m {ss}s',
+    fmtHours: '{h}h {mm}m',
+    fmtDays: '{d}j {hh}h',
     seasonNames: { spring: 'Printemps', summer: 'Été', autumn: 'Automne', winter: 'Hiver' },
   },
   es: {
@@ -459,17 +459,17 @@ const UI: Record<Lang, UiStrings> = {
     mowBtn: 'Cortar',
     stageNames: { dead: 'MUERTA', sprout: 'Brote', short: 'Corta', normal: 'Normal', tall: 'Alta', jungle: 'Jungla' },
     stageNext: { sprout: 'Corta', short: 'Normal', normal: 'Alta', tall: 'Jungla' },
-    nextStageIn: (stage, time) => `${stage} en ${time}`,
+    nextStageIn: '{stage} en {time}',
     jungleMsg: 'Pueden venir insectos, o simplemente córtala.',
     deadMsg: 'Por favor dale agua a este césped',
-    dryPct: (pct, time) => `♨️ ${pct}% seca ${time}`,
-    wateringCooldown: (display) => `Riego: ${display}`,
+    dryPct: '♨️ {pct}% seca {time}',
+    wateringCooldown: 'Riego: {display}',
     ariaLabel: 'Césped virtual, haz clic para tocar la hierba',
     fmtNow: 'ahora',
-    fmtSeconds: (s) => `${s}s`,
-    fmtMinutes: (m, s) => `${m}m ${s}s`,
-    fmtHours: (h, m) => `${h}h ${m}m`,
-    fmtDays: (d, h) => `${d}d ${h}h`,
+    fmtSeconds: '{s}s',
+    fmtMinutes: '{m}m {ss}s',
+    fmtHours: '{h}h {mm}m',
+    fmtDays: '{d}d {hh}h',
     seasonNames: { spring: 'Primavera', summer: 'Verano', autumn: 'Otoño', winter: 'Invierno' },
   },
   de: {
@@ -483,17 +483,17 @@ const UI: Record<Lang, UiStrings> = {
     mowBtn: 'Mähen',
     stageNames: { dead: 'TOT', sprout: 'Keimling', short: 'Kurz', normal: 'Normal', tall: 'Hoch', jungle: 'Dschungel' },
     stageNext: { sprout: 'Kurz', short: 'Normal', normal: 'Hoch', tall: 'Dschungel' },
-    nextStageIn: (stage, time) => `${stage} in ${time}`,
+    nextStageIn: '{stage} in {time}',
     jungleMsg: 'Insekten könnten vorbeikommen, oder einfach mähen.',
     deadMsg: 'Bitte gib diesem Rasen etwas Wasser',
-    dryPct: (pct, time) => `♨️ ${pct}% trocken ${time}`,
-    wateringCooldown: (display) => `Bewässerung: ${display}`,
+    dryPct: '♨️ {pct}% trocken {time}',
+    wateringCooldown: 'Bewässerung: {display}',
     ariaLabel: 'Virtueller Rasen, klicken um Gras zu berühren',
     fmtNow: 'jetzt',
-    fmtSeconds: (s) => `${s}s`,
-    fmtMinutes: (m, s) => `${m}m ${s}s`,
-    fmtHours: (h, m) => `${h}h ${m}m`,
-    fmtDays: (d, h) => `${d}T ${h}h`,
+    fmtSeconds: '{s}s',
+    fmtMinutes: '{m}m {ss}s',
+    fmtHours: '{h}h {mm}m',
+    fmtDays: '{d}T {hh}h',
     seasonNames: { spring: 'Frühling', summer: 'Sommer', autumn: 'Herbst', winter: 'Winter' },
   },
   pl: {
@@ -507,17 +507,17 @@ const UI: Record<Lang, UiStrings> = {
     mowBtn: 'Kośić',
     stageNames: { dead: 'MARTWA', sprout: 'Kiełek', short: 'Krótka', normal: 'Normalna', tall: 'Wysoka', jungle: 'Dżungla' },
     stageNext: { sprout: 'Krótka', short: 'Normalna', normal: 'Wysoka', tall: 'Dżungla' },
-    nextStageIn: (stage, time) => `${stage} za ${time}`,
+    nextStageIn: '{stage} za {time}',
     jungleMsg: 'Mogą przyjść owady, albo po prostu skośić.',
     deadMsg: 'Proszę, podlej ten trawnik',
-    dryPct: (pct, time) => `♨️ ${pct}% sucha ${time}`,
-    wateringCooldown: (display) => `Podlewanie: ${display}`,
+    dryPct: '♨️ {pct}% sucha {time}',
+    wateringCooldown: 'Podlewanie: {display}',
     ariaLabel: 'Wirtualny trawnik, kliknij aby dotknąć trawy',
     fmtNow: 'teraz',
-    fmtSeconds: (s) => `${s}s`,
-    fmtMinutes: (m, s) => `${m}m ${s}s`,
-    fmtHours: (h, m) => `${h}h ${m}m`,
-    fmtDays: (d, h) => `${d}d ${h}h`,
+    fmtSeconds: '{s}s',
+    fmtMinutes: '{m}m {ss}s',
+    fmtHours: '{h}h {mm}m',
+    fmtDays: '{d}d {hh}h',
     seasonNames: { spring: 'Wiosna', summer: 'Lato', autumn: 'Jesień', winter: 'Zima' },
   },
   it: {
@@ -531,17 +531,17 @@ const UI: Record<Lang, UiStrings> = {
     mowBtn: 'Taglia',
     stageNames: { dead: 'MORTA', sprout: 'Germoglio', short: 'Corta', normal: 'Normale', tall: 'Alta', jungle: 'Giungla' },
     stageNext: { sprout: 'Corta', short: 'Normale', normal: 'Alta', tall: 'Giungla' },
-    nextStageIn: (stage, time) => `${stage} tra ${time}`,
+    nextStageIn: '{stage} tra {time}',
     jungleMsg: 'Gli insetti potrebbero venire, o semplicemente tagliala.',
     deadMsg: 'Per favore dai acqua a questo prato',
-    dryPct: (pct, time) => `♨️ ${pct}% secca ${time}`,
-    wateringCooldown: (display) => `Irrigazione: ${display}`,
+    dryPct: '♨️ {pct}% secca {time}',
+    wateringCooldown: 'Irrigazione: {display}',
     ariaLabel: 'Prato virtuale, clicca per toccare l\'erba',
     fmtNow: 'ora',
-    fmtSeconds: (s) => `${s}s`,
-    fmtMinutes: (m, s) => `${m}m ${s}s`,
-    fmtHours: (h, m) => `${h}h ${m}m`,
-    fmtDays: (d, h) => `${d}g ${h}h`,
+    fmtSeconds: '{s}s',
+    fmtMinutes: '{m}m {ss}s',
+    fmtHours: '{h}h {mm}m',
+    fmtDays: '{d}g {hh}h',
     seasonNames: { spring: 'Primavera', summer: 'Estate', autumn: 'Autunno', winter: 'Inverno' },
   },
   pirate: {
@@ -555,17 +555,17 @@ const UI: Record<Lang, UiStrings> = {
     mowBtn: 'Hack it',
     stageNames: { dead: 'DEAD', sprout: 'Seedling', short: 'Trim', normal: 'Decent', tall: 'Overgrown', jungle: 'Kraken' },
     stageNext: { sprout: 'Trim', short: 'Decent', normal: 'Overgrown', tall: 'Kraken' },
-    nextStageIn: (stage, time) => `${stage} in ${time}, arrr`,
+    nextStageIn: '{stage} in {time}, arrr',
     jungleMsg: 'Sea creatures be lurkin\', or just hack it.',
     deadMsg: 'Pleaaase bail some water for this lawn, arrr',
-    dryPct: (pct, time) => `☠️ ${pct}% parched ${time}`,
-    wateringCooldown: (display) => `Bailin\': ${display}`,
+    dryPct: '☠️ {pct}% parched {time}',
+    wateringCooldown: 'Bailin\': {display}',
     ariaLabel: 'Virtual lawn, click to touch grass, arrr',
     fmtNow: 'now',
-    fmtSeconds: (s) => `${s}s`,
-    fmtMinutes: (m, s) => `${m}m ${s}s`,
-    fmtHours: (h, m) => `${h}h ${m}m`,
-    fmtDays: (d, h) => `${d}d ${h}h`,
+    fmtSeconds: '{s}s',
+    fmtMinutes: '{m}m {ss}s',
+    fmtHours: '{h}h {mm}m',
+    fmtDays: '{d}d {hh}h',
     seasonNames: { spring: 'Plantin\' Season', summer: 'High Seas', autumn: 'Harvest', winter: 'Frozen Seas' },
   },
 };

@@ -793,17 +793,20 @@
   function stageNames() { return (lastUi && lastUi.stageNames) || STAGE_NAMES_DEFAULT; }
   function stageNext()  { return (lastUi && lastUi.stageNext)  || STAGE_NEXT_DEFAULT; }
 
+  function uiFmt(tpl, vars) {
+    return tpl.replace(/\{(\w+)\}/g, (_, k) => vars[k] !== undefined ? vars[k] : '');
+  }
   function fmtMs(ms) {
     const u = lastUi;
     if (ms <= 0) return u ? u.fmtNow : 'now';
     const s = Math.ceil(ms / 1000);
-    if (s < 60)  return u ? u.fmtSeconds(s)                           : `${s}s`;
+    if (s < 60)  return u ? uiFmt(u.fmtSeconds, {s})                        : `${s}s`;
     const m = Math.floor(s / 60), ss = s % 60;
-    if (m < 60)  return u ? u.fmtMinutes(m, ss)                       : `${m}m ${ss}s`;
+    if (m < 60)  return u ? uiFmt(u.fmtMinutes, {m, ss})                    : `${m}m ${ss}s`;
     const h = Math.floor(m / 60), mm = m % 60;
-    if (h < 24)  return u ? u.fmtHours(h, mm)                         : `${h}h ${mm}m`;
+    if (h < 24)  return u ? uiFmt(u.fmtHours,   {h, mm})                    : `${h}h ${mm}m`;
     const d = Math.floor(h / 24), hh = h % 24;
-    return u ? u.fmtDays(d, hh) : `${d}d ${hh}h`;
+    return u ? uiFmt(u.fmtDays, {d, hh}) : `${d}d ${hh}h`;
   }
 
   function computeStage(d, now) {
@@ -851,7 +854,7 @@
       : sNames[stage] || stage;
     line1.push(`<span class="stage-label">${SEASON_ICON[d.season] || ''} ${stageLabel}</span>`);
     if (nextMs !== null && nextMs > 0) {
-      const nextLabel = lastUi ? lastUi.nextStageIn(nextStage, `<b>${fmtMs(nextMs)}</b>`) : `${nextStage} in <b>${fmtMs(nextMs)}</b>`;
+      const nextLabel = lastUi ? uiFmt(lastUi.nextStageIn, {stage: nextStage, time: `<b>${fmtMs(nextMs)}</b>`}) : `${nextStage} in <b>${fmtMs(nextMs)}</b>`;
       line1.push(`<span class="timer-next">${nextLabel}</span>`);
     } else if (stage === 'jungle') {
       line1.push(`<span class="timer-next">${lastUi ? lastUi.jungleMsg : 'Insects might visit, or just mow it.'}</span>`);
@@ -862,7 +865,7 @@
     // Line 2: drought + cooldown + totals
     const line2 = [];
     if (stage !== 'dead') {
-      const dryStr = lastUi ? lastUi.dryPct(waterPct, `<b>${fmtMs(deadMs)}</b>`) : `♨️ ${waterPct}% dry <b>${fmtMs(deadMs)}</b>`;
+      const dryStr = lastUi ? uiFmt(lastUi.dryPct, {pct: waterPct, time: `<b>${fmtMs(deadMs)}</b>`}) : `♨️ ${waterPct}% dry <b>${fmtMs(deadMs)}</b>`;
       line2.push(`<span class="timer-next">${dryStr}</span>`);
     }
     line2.push(`<span class="timer-next">🚜 ${d.mowCount ?? 0} 💧 ${d.waterCount ?? 0}</span>`);
@@ -925,7 +928,7 @@
       const m = Math.floor(s / 60);
       const display = m > 0 ? `${m}m${String(s % 60).padStart(2,'0')}s` : `${s}s`;
       if (cooldownEl) {
-        cooldownEl.textContent = lastUi ? lastUi.wateringCooldown(display) : `Watering: ${display}`;
+        cooldownEl.textContent = lastUi ? uiFmt(lastUi.wateringCooldown, {display}) : `Watering: ${display}`;
         cooldownEl.style.display = 'block';
       }
     }, 500);

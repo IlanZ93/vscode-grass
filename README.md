@@ -2,8 +2,9 @@
 
 A virtual lawn living in your VS Code sidebar. Take a break without leaving your IDE.
 
-> Inspired by [vscode-pets](https://github.com/tonybaloney/vscode-pets). Built with [Claude](https://claude.ai).
+![Touch grass](media/readme/notifications.gif)
 
+> Inspired by [vscode-pets](https://github.com/tonybaloney/vscode-pets). Built with [Claude](https://claude.ai).
 ---
 
 ## What is it?
@@ -24,6 +25,8 @@ vscode-grass gives you a pixel-art lawn in the Explorer panel. It grows over tim
 ## Usage
 
 The lawn lives in the **Explorer** sidebar under **VS CODE GRASS**.
+
+![Mowing the lawn](media/readme/mow%20the%20lawn.gif)
 
 | Action | How |
 |--------|-----|

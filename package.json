@@ -4,6 +4,10 @@
   "description": "A virtual lawn in your VS Code sidebar. Touch grass without leaving your IDE.",
   "version": "0.0.3",
   "publisher": "Ilan-Z",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/IlanZ93/vscode-grass.git"
+  },
   "engines": {
     "vscode": "^1.80.0"
   },

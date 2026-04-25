@@ -7,6 +7,18 @@ A virtual lawn living in your VS Code sidebar. Take a break without leaving your
 > Inspired by [vscode-pets](https://github.com/tonybaloney/vscode-pets). Built with [Claude](https://claude.ai).
 ---
 
+## Installation
+
+**From the marketplace** *(recommended)*
+Search `vscode-grass` in the Extensions panel (`Ctrl+Shift+X`) or [install from the marketplace](https://marketplace.visualstudio.com/items?itemName=Ilan-Z.vscode-grass).
+
+**From a release build**
+1. Download the latest `.vsix` from [GitHub Releases](https://github.com/IlanZ93/vscode-grass/releases)
+2. In VS Code: `Ctrl+Shift+P` → `Extensions: Install from VSIX...`
+3. Select the downloaded file
+
+---
+
 ## What is it?
 
 vscode-grass gives you a pixel-art lawn in the Explorer panel. It grows over time, dries out if you neglect it, and reacts to the seasons. Click on it when you need a breather.

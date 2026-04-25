@@ -895,6 +895,7 @@
       analyticsPanel.style.display = analyticsOpen ? 'block' : 'none';
       if (analyticsOpen) updateAnalytics();
     }
+    vscode.postMessage({ type: 'analyticsToggled', open: analyticsOpen });
   });
 
   setInterval(() => {
@@ -950,6 +951,11 @@
         if (isFirstState) {
           scheduleButterflyVisit();
           scheduleSnailVisit();
+          if (msg.data.analyticsOpen && analyticsPanel) {
+            analyticsOpen = true;
+            analyticsPanel.style.display = 'block';
+            updateAnalytics();
+          }
         }
         const newSeason = msg.data.season || 'spring';
         const seasonChanged = newSeason !== currentSeason;
@@ -980,6 +986,7 @@
           analyticsPanel.style.display = analyticsOpen ? 'block' : 'none';
           if (analyticsOpen) updateAnalytics();
         }
+        vscode.postMessage({ type: 'analyticsToggled', open: analyticsOpen });
         break;
     }
   });

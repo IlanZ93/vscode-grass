@@ -23,6 +23,7 @@ interface StateData {
   seasonOverride: number | null; // month 0-11 or null = real date
   lastAliveStage: GrassStage;
   visitorCounts: Record<string, number>;
+  analyticsOpen: boolean;
 }
 
 const WATER_BOOST_MS: Record<GrassStage, number> = {
@@ -53,6 +54,7 @@ export class GrassState {
         seasonOverride:  null,
         lastAliveStage:  'normal' as GrassStage,
         visitorCounts:   {},
+        analyticsOpen:   false,
       };
       this.save();
     } else {
@@ -68,6 +70,7 @@ export class GrassState {
         seasonOverride:  context.globalState.get('seasonOverride', null),
         lastAliveStage:  context.globalState.get('lastAliveStage', 'normal') as GrassStage,
         visitorCounts:   context.globalState.get('visitorCounts', {}),
+        analyticsOpen:   context.globalState.get('analyticsOpen', false),
       };
     }
   }
@@ -159,6 +162,22 @@ export class GrassState {
     this.save();
   }
 
+  setStage(stage: GrassStage): void {
+    const { unit } = this.cfg();
+    const offsets: Record<GrassStage, number> = {
+      sprout: 0,
+      short:  unit * 6 / 24,
+      normal: unit * 14 / 24,
+      tall:   unit * 2,
+      jungle: unit * 3,
+      dead:   0,
+    };
+    this.data.lastMowed = Date.now() - offsets[stage];
+    this.data.lastAliveStage = stage === 'dead' ? 'normal' : stage;
+    if (stage === 'dead') this.data.lastWatered = 0;
+    this.save();
+  }
+
   setSeasonOverride(month: number | null): void {
     this.data.seasonOverride = month;
     this.save();
@@ -198,6 +217,7 @@ export class GrassState {
       seasonOverride:  null,
       lastAliveStage:  'sprout',
       visitorCounts:   {},
+      analyticsOpen:   false,
     };
     this.save();
   }
@@ -211,6 +231,8 @@ export class GrassState {
   get mowCount():       number         { return this.data.mowCount;       }
   get waterCount():     number         { return this.data.waterCount;     }
   get seasonOverride(): number | null  { return this.data.seasonOverride; }
+  get analyticsOpen(): boolean         { return this.data.analyticsOpen;  }
+  setAnalyticsOpen(val: boolean): void { this.data.analyticsOpen = val; this.save(); }
 
   serialize(): StateData & { stage: GrassStage; devMode: boolean; waterCooldownMs: number; season: Season; thresholds: Record<string, number>; deadThresholdMs: number } {
     const { dev, unit, baseUnit, season } = this.cfg();
@@ -249,6 +271,7 @@ export class GrassState {
     this.context.globalState.update('seasonOverride',  d.seasonOverride);
     this.context.globalState.update('lastAliveStage',  d.lastAliveStage);
     this.context.globalState.update('visitorCounts',   d.visitorCounts);
+    this.context.globalState.update('analyticsOpen',   d.analyticsOpen);
     this.context.globalState.update('schemaVersion',   1);
   }
 }

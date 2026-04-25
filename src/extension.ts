@@ -65,6 +65,11 @@ export function activate(context: vscode.ExtensionContext): void {
         state.mow();
         sendState();
         break;
+      case 'analyticsToggled': {
+        const msg2 = raw as { type: string; open: boolean };
+        state.setAnalyticsOpen(msg2.open);
+        break;
+      }
       case 'resetTouchCount':
         state.resetTouchCount();
         sendState();
@@ -113,6 +118,18 @@ export function activate(context: vscode.ExtensionContext): void {
     vscode.commands.registerCommand('vscode-grass.toggleAnalytics', () => {
       provider.postMessage({ type: 'toggleAnalytics' });
     }),
+
+    // DEV ONLY — uncomment + add to package.json commands to enable
+    // vscode.commands.registerCommand('vscode-grass.setStage', async () => {
+    //   const stage = await vscode.window.showQuickPick(
+    //     ['sprout', 'short', 'normal', 'tall', 'jungle', 'dead'],
+    //     { placeHolder: 'Select stage' }
+    //   );
+    //   if (stage) {
+    //     state.setStage(stage as any);
+    //     sendState();
+    //   }
+    // }),
 
     vscode.commands.registerCommand('vscode-grass.resetTouchCount', () => {
       const lang2 = vscode.workspace.getConfiguration('vscodeGrass').get<string>('messageLanguage', 'en');

@@ -892,12 +892,24 @@
     analyticsPanel.innerHTML = html;
   }
 
+  function updateCooldownTop() {
+    if (!cooldownEl) return;
+    const dev = devPanel && devPanel.style.display !== 'none';
+    const ana = analyticsOpen;
+    let top = 0;
+    if (dev && ana) top = 40;
+    else if (dev) top = 25;
+    else if (ana) top = 20;
+    cooldownEl.style.top = top ? `${top}px` : '';
+  }
+
   document.getElementById('btn-analytics')?.addEventListener('click', () => {
     analyticsOpen = !analyticsOpen;
     if (analyticsPanel) {
       analyticsPanel.style.display = analyticsOpen ? 'block' : 'none';
       if (analyticsOpen) updateAnalytics();
     }
+    updateCooldownTop();
     vscode.postMessage({ type: 'analyticsToggled', open: analyticsOpen });
   });
 
@@ -964,6 +976,7 @@
         const seasonChanged = newSeason !== currentSeason;
         currentSeason = newSeason;
         if (devPanel) devPanel.style.display = devMode ? 'flex' : 'none';
+        updateCooldownTop();
         const newStage = computeStage(msg.data, Date.now());
         if (newStage !== currentStage || seasonChanged || isFirstState) {
           currentStage = newStage;
@@ -987,6 +1000,7 @@
         analyticsOpen = !analyticsOpen;
         if (analyticsPanel) {
           analyticsPanel.style.display = analyticsOpen ? 'block' : 'none';
+          updateCooldownTop();
           if (analyticsOpen) updateAnalytics();
         }
         vscode.postMessage({ type: 'analyticsToggled', open: analyticsOpen });

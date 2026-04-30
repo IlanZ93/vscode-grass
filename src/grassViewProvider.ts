@@ -51,24 +51,26 @@ export class GrassViewProvider implements vscode.WebviewViewProvider {
   <title>VS Code Grass</title>
 </head>
 <body>
-  <div id="dev-panel" class="dev-panel" style="display:none">
-    <span class="dev-label">DEV</span>
-    <button id="dev-butterfly">🦋</button>
-    <button id="dev-snail">🐌</button>
-    <button id="dev-goat">🐐</button>
-    <button id="dev-cow">🐄</button>
-    <button id="dev-unicorn">🦄</button>
-    <button id="dev-reset-touch" title="Reset touch count">👆0</button>
-    <button id="dev-kill" title="Kill the grass">💀</button>
-    <select id="dev-season">
-      <option value="">🌍 real</option>
-      <option value="2">🌸 spring</option>
-      <option value="6">☀️ summer</option>
-      <option value="9">🍂 autumn</option>
-      <option value="11">❄️ winter</option>
-    </select>
+  <div id="header">
+    <div id="dev-panel" class="dev-panel" style="display:none">
+      <span class="dev-label">DEV</span>
+      <button id="dev-butterfly">🦋</button>
+      <button id="dev-snail">🐌</button>
+      <button id="dev-goat">🐐</button>
+      <button id="dev-cow">🐄</button>
+      <button id="dev-unicorn">🦄</button>
+      <button id="dev-reset-touch" title="Reset touch count">👆0</button>
+      <button id="dev-kill" title="Kill the grass">💀</button>
+      <select id="dev-season">
+        <option value="">🌍 real</option>
+        <option value="2">🌸 spring</option>
+        <option value="6">☀️ summer</option>
+        <option value="9">🍂 autumn</option>
+        <option value="11">❄️ winter</option>
+      </select>
+    </div>
+    <div id="analytics-panel" class="analytics-panel" style="display:none"></div>
   </div>
-  <div id="analytics-panel" class="analytics-panel" style="display:none"></div>
   <div class="grass-scene">
     <div id="water-cooldown" class="water-cooldown" style="display:none"></div>
     <div id="grass-root" class="grass-container" tabindex="0" aria-label="Virtual lawn, click to touch grass" role="button"></div>

@@ -48,7 +48,7 @@ export class GrassViewProvider implements vscode.WebviewViewProvider {
   <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} 'unsafe-inline'; script-src 'nonce-${nonce}'; img-src ${webview.cspSource};">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="${cssUri}" rel="stylesheet">
-  <title>vs code grass</title>
+  <title>VS Code Grass</title>
 </head>
 <body>
   <div id="dev-panel" class="dev-panel" style="display:none">

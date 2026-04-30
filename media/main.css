@@ -12,6 +12,7 @@ body {
   justify-content: space-between;
   flex-direction: column;
   min-height: 100vh;
+  padding-right: 12px;
 }
 
 .grass-scene {
@@ -178,7 +179,7 @@ body {
 .water-cooldown {
   position: fixed;
   top: 4px;
-  right: 6px;
+  right: 12px;
   z-index: 20;
   background: var(--vscode-badge-background, #4a9ec0);
   color: var(--vscode-badge-foreground, #ffffff);

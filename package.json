@@ -2,7 +2,7 @@
   "name": "vscode-grass",
   "displayName": "vscode-grass",
   "description": "A virtual lawn in your VS Code sidebar. Touch grass without leaving your IDE.",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "publisher": "Ilan-Z",
   "repository": {
     "type": "git",
@@ -22,7 +22,7 @@
           "icon": "media/icons/icon.png",
           "type": "webview",
           "id": "vscodeGrass.grassView",
-          "name": "vs code grass"
+          "name": "VS Code Grass"
         }
       ]
     },
@@ -86,7 +86,7 @@
       ]
     },
     "configuration": {
-      "title": "vs code grass",
+      "title": "VS Code Grass",
       "properties": {
         "vscodeGrass.enableNotifications": {
           "type": "boolean",

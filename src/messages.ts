@@ -369,6 +369,92 @@ export const FIRST_TOUCH: Record<Lang, string> = {
   pirate: 'It be dangerous to sail alone. Take this grass, arrr. 🌿',
 };
 
+const DEAD_TOUCH: Record<Lang, string[]> = {
+  en: [
+    'This grass has achieved true peace. Why disturb it?',
+    'You\'re petting dead grass. May as well stroke your mousepad.',
+    'This lawn is deceased. Your click changes nothing.',
+    'Touching dead grass. Bold strategy. 💀',
+    'The grass is dead. It cannot feel your love.',
+    'NULL pointer exception: grass. ☠️',
+    'git blame: you forgot to water it.',
+    'Water it first. Then touch.',
+    '404: grass not found. Last seen: before you neglected it.',
+  ],
+  fr: [
+    'Cette herbe a atteint la paix véritable. Pourquoi la déranger ?',
+    'Tu caresses de l\'herbe morte. Autant caresser ton tapis de souris.',
+    'Cette pelouse est décédée. Ton clic ne change rien.',
+    'Toucher de l\'herbe morte. Stratégie audacieuse. 💀',
+    'L\'herbe est morte. Elle ne peut pas sentir ton amour.',
+    'NullPointerException : herbe. ☠️',
+    'git blame : t\'as oublié d\'arroser.',
+    'Arrose d\'abord. Touche ensuite.',
+    '404 : herbe introuvable. Dernière vue : avant que tu la négliges.',
+  ],
+  es: [
+    'Esta hierba ha alcanzado la paz verdadera. ¿Por qué molestarla?',
+    'Estás acariciando hierba muerta. Mejor acaricia tu alfombrilla.',
+    'Este césped está muerto. Tu clic no cambia nada.',
+    'Tocar hierba muerta. Estrategia audaz. 💀',
+    'La hierba está muerta. No puede sentir tu amor.',
+    'NullPointerException: hierba. ☠️',
+    'git blame: olvidaste regarlo.',
+    'Riégalo primero. Luego toca.',
+    '404: hierba no encontrada. Última vez vista: antes de abandonarla.',
+  ],
+  de: [
+    'Dieses Gras hat wahren Frieden erlangt. Warum es stören?',
+    'Du streichelst totes Gras. Streichle lieber dein Mauspad.',
+    'Dieser Rasen ist tot. Dein Klick ändert nichts.',
+    'Totes Gras anfassen. Gewagter Plan. 💀',
+    'Das Gras ist tot. Es kann deine Liebe nicht fühlen.',
+    'NullPointerException: Gras. ☠️',
+    'git blame: du hast vergessen zu gießen.',
+    'Erst gießen. Dann anfassen.',
+    '404: Gras nicht gefunden. Zuletzt gesehen: bevor du es vernachlässigt hast.',
+  ],
+  pl: [
+    'Ta trawa osiągnęła prawdziwy spokój. Po co ją niepokoić?',
+    'Głaszczesz martwą trawę. Równie dobrze możesz głaskać podkładkę.',
+    'Ten trawnik nie żyje. Twój klik nic nie zmienia.',
+    'Dotykanie martwej trawy. Śmiała strategia. 💀',
+    'Trawa jest martwa. Nie czuje twojej miłości.',
+    'NullPointerException: trawa. ☠️',
+    'git blame: zapomniałeś podlać.',
+    'Najpierw podlej. Potem dotknij.',
+    '404: trawa nie znaleziona. Ostatnio widziana: zanim ją zaniedbałeś.',
+  ],
+  it: [
+    'Quest\'erba ha raggiunto la vera pace. Perché disturbarla?',
+    'Stai accarezzando erba morta. Tanto vale accarezzare il tappetino.',
+    'Questo prato è morto. Il tuo clic non cambia nulla.',
+    'Toccare erba morta. Strategia audace. 💀',
+    'L\'erba è morta. Non può sentire il tuo amore.',
+    'NullPointerException: erba. ☠️',
+    'git blame: hai dimenticato di innaffiarla.',
+    'Innaffia prima. Poi tocca.',
+    '404: erba non trovata. Vista l\'ultima volta: prima che la trascurassi.',
+  ],
+  pirate: [
+    'This grass has found Davy Jones\' peace, arrr. Why disturb the dead?',
+    'Ye be pettin\' dead grass, arrr. May as well pet yer treasure map.',
+    'This lawn be dead. Yer click changes nothin\', landlubber.',
+    'Touchin\' dead grass. Bold move, sailor. 💀',
+    'The grass be dead. It cannot feel yer love, arrr.',
+    'Null pointer: grass, arrr. ☠️',
+    'git blame: ye forgot to bail water.',
+    'Water it first, then touch, arrr.',
+    '404: grass not found. Last seen before ye abandoned ship.',
+  ],
+};
+
+export function getDeadTouchMessage(lang: string): string {
+  const l = (DEAD_TOUCH[lang as Lang] ? lang : 'en') as Lang;
+  const msgs = DEAD_TOUCH[l];
+  return msgs[Math.floor(Math.random() * msgs.length)];
+}
+
 export function getFirstTouchMessage(lang: string): string {
   const l = (FIRST_TOUCH[lang as Lang] ? lang : 'en') as Lang;
   return FIRST_TOUCH[l];

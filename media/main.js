@@ -171,6 +171,7 @@
   // ===================== GENERATE SCENE =====================
   function generateGrass(stage) {
     const isDead = stage === 'dead';
+    container.style.cursor = isDead ? 'pointer' : '';
     if (!isDead) lastAliveStage = stage;
     const heightStage = isDead
       ? ((lastStateData?.lastAliveStage) || lastAliveStage || 'normal')
@@ -230,14 +231,16 @@
   }
 
   container.addEventListener('click', e => {
-    animateTouchAt(e.clientX);
+    if (currentStage !== 'dead') animateTouchAt(e.clientX);
     vscode.postMessage({ type: 'touch' });
   });
   container.addEventListener('keydown', e => {
     if (e.key === 'Enter' || e.key === ' ') {
       e.preventDefault();
-      const r = container.getBoundingClientRect();
-      animateTouchAt(r.left + r.width / 2);
+      if (currentStage !== 'dead') {
+        const r = container.getBoundingClientRect();
+        animateTouchAt(r.left + r.width / 2);
+      }
       vscode.postMessage({ type: 'touch' });
     }
   });

@@ -1,7 +1,7 @@
 import * as vscode from 'vscode';
 import { GrassViewProvider } from './grassViewProvider';
 import { GrassState } from './grassState';
-import { getRandomMessage, getFirstTouchMessage, getUiStrings } from './messages';
+import { getRandomMessage, getFirstTouchMessage, getDeadTouchMessage, getUiStrings } from './messages';
 
 const NOTIF_COOLDOWN_MS = 24 * 60 * 60 * 1000; // 1 day
 
@@ -30,8 +30,12 @@ export function activate(context: vscode.ExtensionContext): void {
         sendState();
         break;
       case 'touch': {
-        const isFirst = state.touchCount === 0;
         const currentStage = state.getStage();
+        if (currentStage === 'dead') {
+          vscode.window.showWarningMessage(getDeadTouchMessage(lang));
+          break;
+        }
+        const isFirst = state.touchCount === 0;
         state.touch();
         if (isFirst) {
           vscode.window.showInformationMessage(getFirstTouchMessage(lang));
